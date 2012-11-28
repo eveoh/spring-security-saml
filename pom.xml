@@ -148,6 +148,7 @@
                 	<localCheckout>true</localCheckout>
                 	<pushChanges>false</pushChanges>
                 	<goals>deploy</goals>
+                	<preparationGoals>clean</preparationGoals>
                 </configuration>
             </plugin>
             <plugin>
