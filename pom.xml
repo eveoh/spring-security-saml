@@ -31,10 +31,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:svn:https://src.springframework.org/svn/se-security/trunk/</connection>
-        <developerConnection>scm:svn:https://src.springframework.org/svn/se-security/trunk/spring-security-saml
-        </developerConnection>
-        <url>https://src.springframework.org/svn/se-security/trunk/spring-security-saml</url>
+        <connection>scm:git:file://.</connection>
+        <developerConnection>scm:git:file://.</developerConnection>
+        <url>scm:git:file://.</url>
     </scm>
 
     <developers>
@@ -65,20 +64,10 @@
 
     <distributionManagement>
         <repository>
-            <id>spring-milestone</id>
-            <name>Spring Milestone Repository</name>
-            <url>s3://maven.springframework.org/milestone</url>
+            <id>eveoh</id>
+            <name>Eveoh Repository</name>
+            <url>scpexe://p-web-01/var/www/eveoh.nl/files/maven2</url>
         </repository>
-        <snapshotRepository>
-            <id>spring-snapshot</id>
-            <name>Spring Snapshot Repository</name>
-            <url>s3://maven.springframework.org/snapshot</url>
-        </snapshotRepository>
-        <site>
-            <id>local</id>
-            <name>Local Site Directory</name>
-            <url>file:///${user.dir}/site</url>
-        </site>
     </distributionManagement>
 
     <repositories>
@@ -143,8 +132,24 @@
                 <artifactId>org.springframework.build.aws.maven</artifactId>
                 <version>3.0.0.RELEASE</version>
             </extension>
+            <extension>
+        		<groupId>org.apache.maven.wagon</groupId>
+         		<artifactId>wagon-ssh-external</artifactId>
+         		<version>1.0-beta-6</version>
+			</extension>
         </extensions>
         <plugins>
+        	<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                	<autoVersionSubmodules>true</autoVersionSubmodules>
+                	<localCheckout>true</localCheckout>
+                	<pushChanges>false</pushChanges>
+                	<goals>deploy</goals>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
