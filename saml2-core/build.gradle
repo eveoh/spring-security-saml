@@ -24,3 +24,22 @@ dependencies {
 		exclude group: "commons-logging", module: "commons-logging"
 	}
 }
+
+apply plugin: 'maven'
+
+configurations {
+    deployerJars
+}
+
+dependencies {
+    deployerJars "org.apache.maven.wagon:wagon-ssh-external:1.0-beta-6"
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            configuration = configurations.deployerJars
+            repository(url: "scpexe://p-web-01/var/www/eveoh.nl/files/maven2")
+        }
+    }
+}
