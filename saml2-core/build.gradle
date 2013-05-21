@@ -39,7 +39,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             configuration = configurations.deployerJars
-            repository(url: "scpexe://p-web-01/var/www/eveoh.nl/files/maven2")
+            repository(url: "scpexe://p-web-01/var/www/dl.eveoh.nl/maven2")
         }
     }
 }
