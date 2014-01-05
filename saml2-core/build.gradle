@@ -27,19 +27,12 @@ dependencies {
 
 apply plugin: 'maven'
 
-configurations {
-    deployerJars
-}
-
-dependencies {
-    deployerJars "org.apache.maven.wagon:wagon-ssh-external:1.0-beta-6"
-}
-
 uploadArchives {
     repositories {
         mavenDeployer {
-            configuration = configurations.deployerJars
-            repository(url: "scpexe://p-web-01/var/www/dl.eveoh.nl/maven2")
+            repository(url: "https://maven.eveoh.nl/content/repositories/thirdparty") {
+                authentication(userName: mavenUser, password: mavenPass)
+            }
         }
     }
 }
